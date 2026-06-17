@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     env:
-      src_dir_path: "./src/mvp_lite"
+      src_dir_path: "./mvp_lite_root/src/mvp_lite"
       src_package_name: "mvp_lite"
       cythonized_folder_name: "build"
 
@@ -40,8 +40,8 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path ./${{ env.cythonized_folder_name }}
           Copy-Item ./cythonization_git_script/pyproject_build.toml ./${{ env.cythonized_folder_name }}/pyproject.toml
-          Copy-Item requirements.txt ./${{ env.cythonized_folder_name }}/requirements.txt
-          Copy-Item README.md ./${{ env.cythonized_folder_name }}/README.md
+          Copy-Item ./mvp_lite_root/requirements.txt ./${{ env.cythonized_folder_name }}/requirements.txt
+          Copy-Item ./mvp_lite_root/README.md ./${{ env.cythonized_folder_name }}/README.md
 
       - name: Build wheel
         run: |
