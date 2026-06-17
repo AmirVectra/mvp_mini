@@ -1,2 +1,0 @@
-[console_scripts]
-run_mvp_lite = mvp_lite.mvp_lite_main:main

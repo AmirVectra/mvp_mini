@@ -11,19 +11,19 @@ def get_py_files_path(script_path, src_dir_path):
     print("----------------------------------------------get py files path-----------------------------------------")
     command = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path, src_dir_path]
     completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    return [l for l in completed_process.stdout.splitlines() if l.strip() and not l.startswith("Error:")]
-
+    return completed_process.stdout.splitlines()
+    
 def get_pyd_files_path(script_path_pyd_files, src_dir_path):
     print("----------------------------------------------get pyd files path-----------------------------------------")
     command = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path_pyd_files, src_dir_path]
     completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    return [l for l in completed_process.stdout.splitlines() if l.strip() and not l.startswith("Error:")]
-
+    return completed_process.stdout.splitlines()
+    
 def get_non_py_files_path(script_path, src_dir_path):
     print("----------------------------------------------get non-py files path-----------------------------------------")
     command = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path, src_dir_path]
     completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    return [l for l in completed_process.stdout.splitlines() if l.strip() and not l.startswith("Error:")]
+    return completed_process.stdout.splitlines()
 
 
 def get_exclude_py_files_path(list_py_files_path, list_exclude_files_name):
@@ -117,12 +117,11 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
 
     
     src_dir_path = src_dir_path
-    src_dir_path = os.path.normpath(src_dir_path)
     src_package_name = src_package_name
     cythonize_package_name =cythonized_package_name
     
     # Add python files to exclude from cythonization.
-    exclude_py_files_name = ["setup.py", "__init__.py", "mvp_lite_main.py"]
+    exclude_py_files_name = ["main.py","setup.py"]
     #exclude_py_files_name = lis_exclude_py_files
     #"main.py"
 
@@ -130,15 +129,11 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
     file_extensions_to_delete = (".c",".pyd")
     
     prefix_output_path = "./" + cythonize_package_name + "/" + src_package_name
-
-
-    # script_path_pyd_files = "./script_cythonization/get_pyd_file_paths.ps1"
-    # script_path_py_files = "./script_cythonization/find_py_files.ps1"
-    # script_path_non_py_files = "./script_cythonization/non_py_files.ps1"
-
     script_path_pyd_files = "./cythonization_git_script/get_pyd_file_paths.ps1"
     script_path_py_files = "./cythonization_git_script/find_py_files.ps1"
     script_path_non_py_files = "./cythonization_git_script/non_py_files.ps1"
+    
+    
     
     
     # get the list of Python file names from the source folder.

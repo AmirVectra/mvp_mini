@@ -4,20 +4,21 @@ from drawview.deserialize import convertJSONToDrawViewsDict
 from drawview.serialize import convertDrawViewsToJSONFile
 
 # for packaging
-# from .path_manager import set_paths as sp
-# from .mvp_core.scale_config import scaleConfigDict
-# from .mvp_core.run_mvp_lite import MVP_Lite
-# from .path_manager.file_handler import FileHandler
-# from .path_manager import logger_config as lg
-# from .path_manager.set_io_file_paths import IO_Paths
+from mvp_lite.path_manager import set_paths as sp
+from mvp_lite.mvp_core.scale_config import scaleConfigDict
+from mvp_lite.mvp_core.run_mvp_lite import MVP_Lite
+from mvp_lite.path_manager.file_handler import FileHandler
+from mvp_lite.path_manager import logger_config as lg
+from mvp_lite.path_manager.set_io_file_paths import IO_Paths
 
-# for developer
-from mvp_lite_root.src.mvp_lite.path_manager import set_paths as sp
-from mvp_lite_root.src.mvp_lite.mvp_core.scale_config import scaleConfigDict
-from mvp_lite_root.src.mvp_lite.mvp_core.run_mvp_lite import  MVP_Lite
-from mvp_lite_root.src.mvp_lite.path_manager.file_handler import FileHandler
-from mvp_lite_root.src.mvp_lite.path_manager import logger_config as lg
-from mvp_lite_root.src.mvp_lite.path_manager.set_io_file_paths import IO_Paths
+
+# # for developer
+# from mvp_lite_root.src.mvp_lite.path_manager import set_paths as sp
+# from mvp_lite_root.src.mvp_lite.mvp_core.scale_config import scaleConfigDict
+# from mvp_lite_root.src.mvp_lite.mvp_core.run_mvp_lite import  MVP_Lite
+# from mvp_lite_root.src.mvp_lite.path_manager.file_handler import FileHandler
+# from mvp_lite_root.src.mvp_lite.path_manager import logger_config as lg
+# from mvp_lite_root.src.mvp_lite.path_manager.set_io_file_paths import IO_Paths
 
 
 DEFAULT_MVP_CONFIG = {'ctrViewMargin': 10}
@@ -27,6 +28,8 @@ def compute_Pipeline(part_num=None):
         print("\033[91m part_num cannot be empty. Please provide existing part_num  \033[0m")
 
     """ Set the global paths """
+
+
     ioPaths = sp.setCommonPaths(part_num=part_num)
 
     # Check for the presence of status files

@@ -1,0 +1,52 @@
+name: Generate documentation
+# This workflow is used to generate a Doxygen documentation.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate_doxygen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Set Input/Output folder names
+        run: |
+          # Update input folder name.
+          echo "Input_folder=./view_matrix/src" >> $GITHUB_ENV
+          # Update output folder name.
+          echo "Output_folder=documentation/view_matrix" >> $GITHUB_ENV
+
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+
+      - name: Create output folder if it does not exist
+        run: mkdir -p ${{ env.Output_folder }}
+
+      - name: Generate Doxygen documentation
+        run: |
+          # Generate a default Doxyfile.
+          doxygen -g Doxyfile  
+          
+          # Find all Python files in subdirectories and save them to input_files.txt.
+          find ${{ env.Input_folder }} -type f -name "*.py" > input_files.txt
+          file_content=$(cat input_files.txt | tr '\n' ' ')
+          
+          # Set the input paths to the found Python files.
+          echo "INPUT =" $file_content >> Doxyfile
+          
+          # Set the output directory.
+          echo "OUTPUT_DIRECTORY = ${{ env.Output_folder }}" >> Doxyfile 
+          
+          # Generate documentation.
+          doxygen Doxyfile
+          
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name "GitHub Action"
+          git add ${{ env.Output_folder }}
+          git commit -m "Update Doxygen documentation" || echo "No changes to commit"
+          git push https://github.com/Valgo2020/sandbox.git || echo "Nothing to push, branch is up-to-date"
+
