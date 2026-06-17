@@ -1,44 +1,68 @@
-name: cythonize_view_matrix_package
-# Use this workflow to cythonize "SD_Consis_Checks" package
+name: cythonize_mvp_lite
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   run_script:
     runs-on: windows-latest
-    
+
     env:
-      src_dir_path : "./view_matrix/src"
-      package_name: "view_matrix"
-      cythonized_folder_name: "./view_matrix/build"
+      src_dir_path: "./src/mvp_lite"
+      src_package_name: "mvp_lite"
+      cythonized_folder_name: "build"
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
-      
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.9  # Adjust to the version your script requires
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install cython setuptools wheel build
 
-    - name: Install Cython
-      run: pip install Cython
+      - name: Cythonize package
+        run: |
+          python ./cythonization_git_script/cythonize_py_files.py `
+            ${{ env.src_dir_path }} `
+            ${{ env.src_package_name }} `
+            ${{ env.cythonized_folder_name }}
 
-    - name: cythonize package
-      run: |
-        python ./script_cythonization/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
+      - name: Prepare build folder
+        run: |
+          Copy-Item ./cythonization_git_script/pyproject_build.toml ./${{ env.cythonized_folder_name }}/pyproject.toml
+          Copy-Item requirements.txt ./${{ env.cythonized_folder_name }}/requirements.txt
+          Copy-Item README.md ./${{ env.cythonized_folder_name }}/README.md
 
-    - name: Commit and push changes
-      run: |
-        git config --local user.email "github-actions@github.com"
-        git config --local user.name "GitHub Action"
-        #git add MyProgram/*.c cythonized/*.pyd
-        git add .
-        #git add path/to/your/pyd/files/*.pyd
+      - name: Build wheel
+        run: |
+          cd ${{ env.cythonized_folder_name }}
+          python -m build --wheel --no-isolation
 
-        git commit -m "SD_ConsisChecks package cythonized"
-        #git push https://Valgo2020:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/Valgo2020/Hole-Sequencing-TSP.git main
-        git push https://github.com/Valgo2020/sandbox.git
+      - name: Move wheel to dist folder
+        run: |
+          $version = (Get-Content ./cythonization_git_script/pyproject_build.toml | Select-String 'version\s*=\s*"(.+)"').Matches.Groups[1].Value
+          echo "PACKAGE_VERSION=$version" >> $env:GITHUB_ENV
+          $dist_path = "./dist/$version"
+          New-Item -ItemType Directory -Force -Path $dist_path
+          Move-Item -Path ./${{ env.cythonized_folder_name }}/dist/*.whl -Destination $dist_path
+
+      - name: Upload wheel as GitHub Actions artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvp_lite-wheel-${{ env.PACKAGE_VERSION }}
+          path: ./dist/${{ env.PACKAGE_VERSION }}/*.whl
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .
+          git diff --staged --quiet || git commit -m "Cythonized and built mvp_lite v${{ env.PACKAGE_VERSION }}"
+          git push
