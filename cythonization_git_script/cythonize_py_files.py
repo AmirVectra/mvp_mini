@@ -117,6 +117,7 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
 
     
     src_dir_path = src_dir_path
+    src_dir_path = os.path.normpath(src_dir_path)
     src_package_name = src_package_name
     cythonize_package_name =cythonized_package_name
     
