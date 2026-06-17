@@ -13,7 +13,7 @@ authors = [
   { name="Amir Hamza", email=" .com" }
 ]
 description = "This is a Sheet Alloc Program: MVP Lite for stacking OPS Views with 'N' NOPS View"
-readme = "README.md"
+
 license = { text = "MIT" }
 dynamic = ["dependencies"]
 

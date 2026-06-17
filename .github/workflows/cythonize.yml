@@ -41,8 +41,9 @@ jobs:
           New-Item -ItemType Directory -Force -Path ./${{ env.cythonized_folder_name }}
           Copy-Item ./cythonization_git_script/pyproject_build.toml ./${{ env.cythonized_folder_name }}/pyproject.toml
           Copy-Item ./mvp_lite_root/requirements.txt ./${{ env.cythonized_folder_name }}/requirements.txt
-          Copy-Item ./mvp_lite_root/README.md ./${{ env.cythonized_folder_name }}/README.md
-
+          if (Test-Path ./mvp_lite_root/README.md) {
+            Copy-Item ./mvp_lite_root/README.md ./${{ env.cythonized_folder_name }}/README.md
+          }
       - name: Build wheel
         run: |
           cd ${{ env.cythonized_folder_name }}
