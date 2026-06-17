@@ -11,19 +11,19 @@ def get_py_files_path(script_path, src_dir_path):
     print("----------------------------------------------get py files path-----------------------------------------")
     command = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path, src_dir_path]
     completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    return completed_process.stdout.splitlines()
-    
+    return [l for l in completed_process.stdout.splitlines() if l.strip() and not l.startswith("Error:")]
+
 def get_pyd_files_path(script_path_pyd_files, src_dir_path):
     print("----------------------------------------------get pyd files path-----------------------------------------")
     command = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path_pyd_files, src_dir_path]
     completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    return completed_process.stdout.splitlines()
-    
+    return [l for l in completed_process.stdout.splitlines() if l.strip() and not l.startswith("Error:")]
+
 def get_non_py_files_path(script_path, src_dir_path):
     print("----------------------------------------------get non-py files path-----------------------------------------")
     command = ["powershell.exe", "-ExecutionPolicy", "Bypass", "-File", script_path, src_dir_path]
     completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
-    return completed_process.stdout.splitlines()
+    return [l for l in completed_process.stdout.splitlines() if l.strip() and not l.startswith("Error:")]
 
 
 def get_exclude_py_files_path(list_py_files_path, list_exclude_files_name):

@@ -4,13 +4,12 @@ param (
 
 # Check if the directory path is provided as an argument
 if (-not $directory_path) {
-    Write-Host "Usage: $([System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.MyCommand.Name)) <directory_path>"
+    Write-Error "Usage: ..."   # was Write-Error
     exit 1
 }
 
-# Check if the provided path is a valid directory
 if (-not (Test-Path $directory_path -PathType Container)) {
-    Write-Host "Error: '$directory_path' is not a valid directory."
+    Write-Error "Error: '$directory_path' is not a valid directory."   # was Write-Error
     exit 1
 }
 
@@ -21,4 +20,4 @@ $py_files = Get-ChildItem -Recurse -File -Path $directory_path -Filter '*.pyd' |
 
 # Join the array elements into a single string with null separators
 $py_files_string = $py_files -join [Environment]::NewLine
-Write-Host $py_files_string
+Write-Error $py_files_string
