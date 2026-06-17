@@ -1,4 +1,4 @@
-name: cythonize_view_matrix_package
+name: cythonize_mvp_lite_package
 # Use this workflow to cythonize "SD_Consis_Checks" package
 
 on:
