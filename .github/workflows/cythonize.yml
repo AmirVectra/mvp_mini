@@ -1,5 +1,4 @@
 name: cythonize_mvp_lite_package
-# Use this workflow to cythonize "SD_Consis_Checks" package
 
 on:
   workflow_dispatch:
@@ -7,7 +6,10 @@ on:
 jobs:
   run_script:
     runs-on: windows-latest
-    
+
+    permissions:
+      contents: write        # 👈 This is the key addition
+
     env:
       src_dir_path : "./mvp_lite_root/src"
       package_name: "mvp_lite"
@@ -17,12 +19,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-
-      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9  # Adjust to the version your script requires
+        python-version: 3.9
 
     - name: Install Cython
       run: pip install Cython
