@@ -9,9 +9,9 @@ jobs:
     runs-on: windows-latest
     
     env:
-      src_dir_path : "./mvp_lite_root/mvp_lite/src"
+      src_dir_path : "./mvp_lite_root/src"
       package_name: "mvp_lite"
-      cythonized_folder_name: "./mvp_lite/build"
+      cythonized_folder_name: "./demo/build"
 
     steps:
     - name: Checkout code
