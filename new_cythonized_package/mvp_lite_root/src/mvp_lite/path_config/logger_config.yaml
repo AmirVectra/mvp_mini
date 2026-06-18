@@ -1,0 +1,44 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  simple:
+    format: '[%(levelname)s] [%(asctime)s] [%(module)s] - %(message)s'
+    datefmt: '%d-%m-%Y %H:%M:%S'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+
+loggers:
+  DEV:
+    level: DEBUG
+    handlers: [console]
+    propagate: false
+
+  TEST:
+    level: INFO
+    handlers: [console]
+    propagate: false
+
+  PROD:
+    level: INFO
+    handlers: []
+    propagate: false
+
+root:
+  level: DEBUG
+  handlers: [console]
+
+file_suffixes:
+#  FEEDER_FILE_SUFFIX: "_PARTS_LIST.csv"
+#  RESTART_FILE_SUFFIX: "_restart.txt"
+  COMPLETE_FILE_SUFFIX: "_complete.txt"
+  FAILED_FILE_SUFFIX: "_failure.txt"
+
+log_suffixes:
+  INFO_LOG_SUFFIX: "_info.log"
+  ERROR_LOG_SUFFIX: "_error.log"
