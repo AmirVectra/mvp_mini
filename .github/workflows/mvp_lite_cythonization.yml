@@ -27,7 +27,7 @@ jobs:
 
     - name: cythonize package
       run: |
-        python ./cythonization_local_script/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
+        python ./cythonization_git_script/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
 
     - name: Commit and push changes
       run: |
@@ -36,7 +36,7 @@ jobs:
         #git add MyProgram/*.c cythonized/*.pyd
         git status
         git add .
-        git add -f ${{env.cythonized_folder_name}}/
+        #git add -f ${{env.cythonized_folder_name}}/
         #git add path/to/your/pyd/files/*.pyd
 
         git commit -m "TRIAL package cythonized"
