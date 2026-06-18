@@ -28,7 +28,14 @@ jobs:
     - name: cythonize package
       run: |
         python ./cythonization_local_script/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
+    - name: List generated files
+      shell: pwsh
+      run: |
+        Get-ChildItem -Path . -Recurse -Include *.pyd | Select-Object FullName
 
+    - name: Git status
+      run: |
+        git status
     - name: Commit and push changes
       run: |
         git config --local user.email "github-actions@github.com"
