@@ -1,0 +1,27 @@
+{
+	"ENV": "PROD",
+	"APP_PATH": "C:\\Vectra\\Auto2D_Server",
+	"CONFIG_FOLDER": {
+		"NAME": "Config",
+		"OUTPUT_DIR_PATH_FILE": "Output_Folder_Path.txt"
+	},
+	"REFERENCE_FOLDER": {
+		"NAME": "REFERENCE",
+		"STD_NAAMS": "NAAMS",
+		"STD_SHAPES": "SHAPES",
+		"STD_SHAPE_ANGLE": "STD_ANGLE_SWEEP_DATA",
+		"STD_SHAPE_RT": "STD_TUBG_SWEEP_DATA",
+		"STD_SHAPE_RT_NF": "STD_TUBG_NF_SWEEP_DATA",
+		"STD_SHAPE_CHANNEL": "STD_CHANNEL_SWEEP_DATA",
+		"STD_SHAPE_UNISTRUT": "STD_UNISTRUT_SWEEP_DATA",
+		"STD_PURCH": "STD_PURCH",
+		"STD_PURCH_JLR": "JLR-EXP-CAT-EMEA-CAR-BIW"
+	},
+	"TEMPLATES_FOLDER": {
+		"NAME": "Templates",
+		"PSD_FILE_PREFIX": "AutoDim_DataParse_",
+		"DIMDB_FILE_PREFIX": "Dimension_Database_",
+		"USD_FILE_PREFIX": "Unit_DataParse_",
+		"UNITDIMDB_FILE_PREFIX": "Unit_Database_"
+	}
+}
