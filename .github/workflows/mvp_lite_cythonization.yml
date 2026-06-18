@@ -33,14 +33,27 @@ jobs:
       run: |
         Get-ChildItem -Path . -Recurse -Include *.pyd | Select-Object FullName
 
-    - name: Git status
+    - name: Show pyd git status
+      shell: pwsh
       run: |
-        git status
+        Get-ChildItem -Recurse -Filter *.pyd | ForEach-Object {
+            Write-Host "FOUND:" $_.FullName
+        }
+
+        git status --untracked-files=all
+        
+    - name: Check pyd tracking
+      shell: pwsh
+      run: |
+        git ls-files --others --exclude-standard | Select-String ".pyd"
+
     - name: Commit and push changes
       run: |
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Action"
         #git add MyProgram/*.c cythonized/*.pyd
+        
+        
         git add .
         #git add path/to/your/pyd/files/*.pyd
 
