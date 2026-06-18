@@ -1,0 +1,28 @@
+{
+	"ENV": "PROD",
+	"AUTO2D_OUTPUT_FILES": {
+		"CONFIG_FOLDER": {
+			"NAME": "Config",
+			"TOOL_FOLDER_PATH_FILE": "Tool_Folder_Path.txt"
+		},
+		"DIMENSION_DATABASES": "Dimension_Databases",
+		"DIMENSION_DATABASE_BACKUP":"Dimension_Database_Backup",
+		"DRAWINGS":"Drawings",
+		"LOG": "Log",
+		"PART_SWEEP_DATA_BACKUP":"Part_Sweep_Data_Backup",
+		"PART_SWEEP_DATA_WITH_ADA": "Part_Sweep_Data_With_ADA",
+		"TEMP_DATA": "Temp_Data",
+		"TEMP_UNIT_SWEEP_DATA": "Temp_Unit_Sweep_Data",
+		"UNIT_DATABASES": "Unit_Databases",
+		"UNIT_SWEEP_DATA": {
+			"NAME": "Unit_Sweep_Data",
+			"PARTS_LIST": "PARTS_LIST.txt"
+		},
+		"UNIT_SWEEP_DATA_BACKUP": "Unit_Sweep_Data_Backup",
+		"UNPROCESSED_PARTS": "UnProcessed_Parts",
+		"Extraced_Dimension_Databases": "Extraced_Dimension_Databases"
+	},
+	"MAP": {
+		"" : "Temp_Data"
+	}
+}
