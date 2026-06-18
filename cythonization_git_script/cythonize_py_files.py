@@ -62,8 +62,16 @@ def move_pyd_files(list_pyd_files_path, src_package_name, target_package_name,pr
         # Copy the file
         try:
             os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
-            shutil.copy(source_path, path_to_move_file)
-                
+            print("move pyd file from : ", source_path)
+            print("move pyd file to : ", path_to_move_file)
+            shutil.copy2(source_path, path_to_move_file)
+            if os.path.exists(path_to_move_file):
+                        print("pyd files moved successfully")
+                        path =  r"./compiled_package/data_validation/src/vct_lib"
+                        items = os.listdir(path)
+                        print(items)
+            else:
+                        print("pyd file not moved")
         except OSError as e:
             # Handle the case where the file cannot be copied
             print(f"Error: {e}")
@@ -87,6 +95,8 @@ def move_excluded_py_files(list_path_exclude_py, src_package_name, target_packag
         path_to_move_file = get_modified_path(file, src_package_name, target_package_name, prefix_output_path)
         #use function
         os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
+        print("source path", source_path)
+        print("destionation path", path_to_move_file)
         shutil.copy(source_path, path_to_move_file)
 
 def delete_files_with_extensions(directory, extensions):
@@ -116,7 +126,7 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
     #"main.py"
 
     # Delete extra files generated during cythonization process.
-    file_extensions_to_delete = (".c", ".pyd")
+    file_extensions_to_delete = (".c",".pyd")
     
     prefix_output_path = "./" + cythonize_package_name + "/" + src_package_name
     script_path_pyd_files = "./script_cythonization/get_pyd_file_paths.ps1"
