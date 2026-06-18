@@ -142,10 +142,12 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
     # Delete extra files generated during cythonization process.
     file_extensions_to_delete = (".c", ".pyd")
     
-    prefix_output_path = "./" + cythonize_package_name + "/" + src_package_name
-    script_path_pyd_files = "./cythonization_local_script/get_pyd_file_paths.ps1"
-    script_path_py_files = "./cythonization_local_script/find_py_files.ps1"
-    script_path_non_py_files = "./cythonization_local_script/non_py_files.ps1"
+    # prefix_output_path = "./" + cythonize_package_name + "/" + src_package_name
+    ### AMIR
+    prefix_output_path = "./" + cythonize_package_name
+    script_path_pyd_files = "./cythonization_git_script/get_pyd_file_paths.ps1"
+    script_path_py_files = "./cythonization_git_script/find_py_files.ps1"
+    script_path_non_py_files = "./cythonization_git_script/non_py_files.ps1"
     
     
     
