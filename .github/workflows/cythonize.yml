@@ -40,4 +40,4 @@ jobs:
 
         git commit -m "MVP Lite package cythonized"
         #git push https://Valgo2020:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/Valgo2020/Hole-Sequencing-TSP.git main
-        git push https://Valgo2020:@github.com/AmirVectra/mvp_mini.git
+        git push https://AmirVectra:@github.com/AmirVectra/mvp_mini.git
