@@ -1,5 +1,5 @@
-name: cythonize_data_validation_package
-# Use this workflow to cythonize "SD_Consis_Checks" package.
+name: cythonize_mvp_lite
+# Use this workflow to cythonize "MVP Lite" package.
 
 on:
   workflow_dispatch:
@@ -38,6 +38,6 @@ jobs:
         git add .
         #git add path/to/your/pyd/files/*.pyd
 
-        git commit -m "SD_ConsisChecks package cythonized"
+        git commit -m "MVP Lite package cythonized"
         #git push https://Valgo2020:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/Valgo2020/Hole-Sequencing-TSP.git main
         git push https://Valgo2020:@github.com/AmirVectra/mvp_mini.git
