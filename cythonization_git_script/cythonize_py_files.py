@@ -121,7 +121,7 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
     cythonize_package_name =cythonized_package_name
     
     # Add python files to exclude from cythonization.
-    exclude_py_files_name = ["main.py","setup.py"]
+    exclude_py_files_name = ["mvp_lite_main.py","setup.py","__init__.py"]
     #exclude_py_files_name = lis_exclude_py_files
     #"main.py"
 
