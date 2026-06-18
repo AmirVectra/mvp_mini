@@ -27,7 +27,7 @@ jobs:
 
     - name: cythonize package
       run: |
-        python ./script_cythonization/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
+        python ./cythonization_git_script/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
 
     - name: Commit and push changes
       run: |
