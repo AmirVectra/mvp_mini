@@ -51,23 +51,47 @@ def start_cythonization(list_py_files_dir, exclude_files_name):
             completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
 
 
-def move_pyd_files(list_pyd_files_path, src_package_name, target_package_name,prefix_output_path ):
+# def move_pyd_files(list_pyd_files_path, src_package_name, target_package_name,prefix_output_path ):
+#
+#     print("-------------------------------------Moving files process began-------------------------------------------")
+#     for file in list_pyd_files_path:
+#         source_path = file
+#         path_to_move_file = get_modified_path(file, src_package_name, target_package_name,prefix_output_path)
+#         #os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
+#         #shutil.copy2(source_path, path_to_move_file)
+#         # Copy the file
+#         try:
+#             os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
+#             shutil.copy(source_path, path_to_move_file)
+#
+#         except OSError as e:
+#             # Handle the case where the file cannot be copied
+#             print(f"Error: {e}")
 
+def move_pyd_files(list_pyd_files_path, src_package_name, target_package_name, prefix_output_path):
     print("-------------------------------------Moving files process began-------------------------------------------")
     for file in list_pyd_files_path:
         source_path = file
-        path_to_move_file = get_modified_path(file, src_package_name, target_package_name,prefix_output_path)
-        #os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
-        #shutil.copy2(source_path, path_to_move_file)
+        path_to_move_file = get_modified_path(file, src_package_name, target_package_name, prefix_output_path)
+        # os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
+        # shutil.copy2(source_path, path_to_move_file)
         # Copy the file
         try:
             os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
-            shutil.copy(source_path, path_to_move_file)
-                
+            print("move pyd file from : ", source_path)
+            print("move pyd file to : ", path_to_move_file)
+            shutil.copy2(source_path, path_to_move_file)
+            if os.path.exists(path_to_move_file):
+                print("pyd files moved successfully")
+                path = r"./compiled_package/mvp_lite_root/src/mvp_lite"
+                items = os.listdir(path)
+                print(items)
+            else:
+                print("pyd file not moved")
         except OSError as e:
             # Handle the case where the file cannot be copied
             print(f"Error: {e}")
-    
+
 
 def move_non_py_files(list_non_py_files_path, src_package_name, target_package_name, prefix_output_path ):
     print("-----------------------------Moving non py files began-------------------------------")
