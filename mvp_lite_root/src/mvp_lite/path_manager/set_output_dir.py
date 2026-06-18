@@ -1,6 +1,6 @@
 from dataclasses import dataclass
-from ..path_manager.set_global_paths import *
-from ..path_manager.dir_utilities import DirectoryOPS as dir_ops
+from mvp_lite.path_manager.set_global_paths import *
+from mvp_lite.path_manager.dir_utilities import DirectoryOPS as dir_ops
 
 
 @dataclass

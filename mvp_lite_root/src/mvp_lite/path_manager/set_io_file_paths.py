@@ -1,6 +1,6 @@
-from .set_app_dir import *
-from .set_output_dir import *
-from . import logger_config as lg
+from mvp_lite.path_manager.set_app_dir import *
+from mvp_lite.path_manager.set_output_dir import *
+from mvp_lite.path_manager import logger_config as lg
 
 
 @dataclass

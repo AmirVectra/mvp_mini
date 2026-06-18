@@ -1,9 +1,9 @@
 import copy
 import sys
 from pathlib import Path
-from ..path_manager import logger_config as lg
-from ..path_manager.file_handler import FileHandler
-from ..path_manager.set_io_file_paths import IO_Paths
+from mvp_lite.path_manager import logger_config as lg
+
+from mvp_lite.path_manager.set_io_file_paths import IO_Paths
 
 
 def setCommonPaths(part_num):

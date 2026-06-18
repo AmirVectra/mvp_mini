@@ -5,12 +5,7 @@ from drawview.views_cluster.cluster import ViewCluster
 from drawview.views_cluster.ortho_projections_set import OrthographicProjectionSet
 from vct_o_geom.vector import Vector
 
-### for packaging
-from .scale_config import scaleConfigDict
-from ..path_manager.set_io_file_paths import IO_Paths
-### for developer
-# from mvp_lite_root.src.mvp_lite.mvp_core.scale_config import scaleConfigDict
-# from mvp_lite_root.src.mvp_lite.path_manager.set_io_file_paths import IO_Paths
+
 
 DISPLAY_WORKING_AREA_RECT_CONFIG={'displayWorkingArea': False}
 INTERVIEW_PADDING=15

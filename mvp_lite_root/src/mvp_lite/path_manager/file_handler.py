@@ -3,7 +3,7 @@ import yaml
 import os
 import pandas as pd
 from pathlib import Path
-from ..path_manager import logger_config as lg
+from mvp_lite.path_manager import logger_config as lg
 
 
 class FileHandler:

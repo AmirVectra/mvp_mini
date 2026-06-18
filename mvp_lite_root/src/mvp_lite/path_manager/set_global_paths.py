@@ -1,6 +1,5 @@
-from ..path_manager import logger_config as lg
-from ..path_manager.set_local_paths import LocalPaths
-from ..path_manager.file_handler import *
+from mvp_lite.path_manager.set_local_paths import LocalPaths
+from mvp_lite.path_manager.file_handler import *
 
 
 class GlobalPaths(LocalPaths):

@@ -70,6 +70,7 @@ def compute_Pipeline(part_num=None):
         # ----------- STAGE-2 CALL the CORE LOGIC that return positioned views --------#
         mvpLiteObject=MVP_Lite(drawsheetObject=sheetObject,viewsIdObjectDict=drawviewsIdObjectDict,
                                           scaleConfigDict=scaleConfigDict,MVP_Config=DEFAULT_MVP_CONFIG)
+
         updatedViewsIdObjectDict=mvpLiteObject.outputViewsIdObjectDict
 
 

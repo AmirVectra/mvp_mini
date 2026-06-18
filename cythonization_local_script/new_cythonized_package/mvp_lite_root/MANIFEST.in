@@ -1,3 +1,0 @@
-prune sample_data
-prune req_wheels
-recursive-include src/mvp_lite *.yaml *.json
