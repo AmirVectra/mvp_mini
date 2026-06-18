@@ -1,5 +1,5 @@
-name: cythonize_correction_package
-# Use this workflow to cythonize "SD_Consis_Checks" package.
+name: cythonize_mvp_lite
+# Use this workflow to cythonize "MVP Lite" package.
 
 on:
   workflow_dispatch:
@@ -7,22 +7,20 @@ on:
 jobs:
   run_script:
     runs-on: windows-latest
-
+    
     env:
-      src_dir_path : "./mvp_lite_root/src/mvp_lite"
+      src_dir_path : "./mvp_mini/mvp_lite"
       package_name: "mvp_lite"
-      cythonized_folder_name: "compiled_package"
+      cythonized_folder_name: "build"
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
-
-
+      
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.12  # Adjust to the version your script requires
+        python-version: 3.9  # Adjust to the version your script requires
 
     - name: Install Cython
       run: pip install Cython
@@ -36,9 +34,10 @@ jobs:
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Action"
         #git add MyProgram/*.c cythonized/*.pyd
+        git status
         git add .
         #git add path/to/your/pyd/files/*.pyd
 
-        git commit -m "MVP_LITE package cythonized"
+        git commit -m "MVP Lite package cythonized"
         #git push https://Valgo2020:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/Valgo2020/Hole-Sequencing-TSP.git main
-        git push https://github.com/AmirVectra/mvp_mini.git
+        git push https://Valgo2020:@github.com/AmirVectra/mvp_mini.git
