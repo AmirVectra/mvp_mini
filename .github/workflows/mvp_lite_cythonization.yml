@@ -28,36 +28,16 @@ jobs:
     - name: cythonize package
       run: |
         python ./cythonization_local_script/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
-    - name: List generated files
-      shell: pwsh
-      run: |
-        Get-ChildItem -Path . -Recurse -Include *.pyd | Select-Object FullName
-
-    - name: Show pyd git status
-      shell: pwsh
-      run: |
-        Get-ChildItem -Recurse -Filter *.pyd | ForEach-Object {
-            Write-Host "FOUND:" $_.FullName
-        }
-
-        git status --untracked-files=all
-        
-    - name: Check pyd tracking
-      shell: pwsh
-      run: |
-        git ls-files --others --exclude-standard | Select-String ".pyd"
 
     - name: Commit and push changes
       run: |
         git config --local user.email "github-actions@github.com"
         git config --local user.name "GitHub Action"
         #git add MyProgram/*.c cythonized/*.pyd
-        
-        
+        git status
         git add .
         #git add path/to/your/pyd/files/*.pyd
 
-        git commit -m "MVP Lite package cythonized" 
-        #git push https://Valgo2020:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/Valgo2020/Hole-Sequencing-TSP.git main
-        #git push https://AmirVectra:@github.com/AmirVectra/mvp_mini.git
-        git push origin HEAD
+        git commit -m "TRIAL package cythonized"
+        #git push https://AmirVectra:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/AmirVectra/mvp_mini.git main
+        git push https://AmirVectra:@github.com/AmirVectra/mvp_mini.git
