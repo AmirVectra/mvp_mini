@@ -1,0 +1,89 @@
+{
+    "UNITS": "mm",
+    "VIEWS": [
+        {
+            "VIEW_ID": 4,
+            "VIEW_NAME": "Section view A-A",
+            "H": 73.0,
+            "V": 133.0,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 1074.5,
+                "Y": 189.0
+            },
+            "DRAW_ZONES": {
+                "L": 37.0,
+                "R": 20.0,
+                "T": 20.0,
+                "B": 12.0
+            },
+            "CTR_VIEW": "TOP@1",
+            "REL_ORDER": "",
+            "SCALE": 1.0,
+            "SHT_ID": 1
+        },
+        {
+            "VIEW_ID": 1,
+            "VIEW_NAME": "Top@1",
+            "H": 865.0,
+            "V": 135.0,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 531.5,
+                "Y": 618.0
+            },
+            "DRAW_ZONES": {
+                "L": 41.0,
+                "R": 34.0,
+                "T": 45.0,
+                "B": 45.0
+            },
+            "CTR_VIEW": "Top@1",
+            "REL_ORDER": "CTR",
+            "SCALE": 1.0,
+            "SHT_ID": 1
+        },
+        {
+            "VIEW_ID": 2,
+            "VIEW_NAME": "ORTHO@3",
+            "H": 73.0,
+            "V": 133.5,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 1051.5,
+                "Y": 618.0
+            },
+            "DRAW_ZONES": {
+                "L": 7.0,
+                "R": 33.0,
+                "T": 30.0,
+                "B": 6.5
+            },
+            "CTR_VIEW": "Top@1",
+            "REL_ORDER": "R",
+            "SCALE": 1.0,
+            "SHT_ID": 1
+        },
+        {
+            "VIEW_ID": 3,
+            "VIEW_NAME": "ORTHO@2",
+            "H": 865.0,
+            "V": 75.0,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 531.5,
+                "Y": 390.5
+            },
+            "DRAW_ZONES": {
+                "L": 41.0,
+                "R": 34.0,
+                "T": 32.5,
+                "B": 67.5
+            },
+            "CTR_VIEW": "Top@1",
+            "REL_ORDER": "B",
+            "SCALE": 1.0,
+            "SHT_ID": 1
+        }
+    ]
+}
