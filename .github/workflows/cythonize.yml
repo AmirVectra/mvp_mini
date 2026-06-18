@@ -1,4 +1,5 @@
-name: cythonize_mvp_lite_package
+name: cythonize_correction_package
+# Use this workflow to cythonize "SD_Consis_Checks" package.
 
 on:
   workflow_dispatch:
@@ -7,37 +8,37 @@ jobs:
   run_script:
     runs-on: windows-latest
 
-    permissions:
-      contents: write
-
     env:
-      src_dir_path: "./mvp_lite_root/src/mvp_lite"
+      src_dir_path : "./mvp_lite_root/src/mvp_lite"
       package_name: "mvp_lite"
       cythonized_folder_name: "compiled_package"
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
 
-      - name: Install Cython
-        run: pip install cython
 
-      - name: Cythonize package
-        run: |
-          python ./cythonization_git_script/cythonize_py_files.py `
-            "${{ env.src_dir_path }}" `
-            "${{ env.package_name }}" `
-            "${{ env.cythonized_folder_name }}"
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.12  # Adjust to the version your script requires
 
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "github-actions@github.com"
-          git config --local user.name "GitHub Actions"
-          git add .
-          git diff --staged --quiet || git commit -m "MVP Lite package cythonized"
-          git push origin main
+    - name: Install Cython
+      run: pip install Cython
+
+    - name: cythonize package
+      run: |
+        python ./cythonization_git_script/cythonize_py_files.py ${{ env.src_dir_path}} ${{env.package_name}} ${{env.cythonized_folder_name}}
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "github-actions@github.com"
+        git config --local user.name "GitHub Action"
+        #git add MyProgram/*.c cythonized/*.pyd
+        git add .
+        #git add path/to/your/pyd/files/*.pyd
+
+        git commit -m "MVP_LITE package cythonized"
+        #git push https://Valgo2020:${{secrets.WRITE_PROTECTED_BRANCH}}@github.com/Valgo2020/Hole-Sequencing-TSP.git main
+        git push https://github.com/AmirVectra/mvp_mini.git
