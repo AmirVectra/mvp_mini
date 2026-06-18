@@ -4,13 +4,13 @@ from drawview.deserialize import convertJSONToDrawViewsDict
 from drawview.serialize import convertDrawViewsToJSONFile
 
 # for packaging
+from mvp_lite.path_manager.set_io_file_paths import IO_Paths
 from mvp_lite.path_manager import set_paths as sp
-from mvp_lite.mvp_core.scale_config import scaleConfigDict
-from mvp_lite.mvp_core.run_mvp_lite import MVP_Lite
 from mvp_lite.path_manager.file_handler import FileHandler
 from mvp_lite.path_manager import logger_config as lg
-from mvp_lite.path_manager.set_io_file_paths import IO_Paths
 
+from mvp_lite.mvp_core.scale_config import scaleConfigDict
+from mvp_lite.mvp_core.run_mvp_lite import MVP_Lite
 
 # # for developer
 # from mvp_lite_root.src.mvp_lite.path_manager import set_paths as sp
