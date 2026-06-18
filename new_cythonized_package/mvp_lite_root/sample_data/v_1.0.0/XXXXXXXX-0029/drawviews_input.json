@@ -1,0 +1,91 @@
+{
+    "UNITS": "mm",
+    "VIEWS": [
+        {
+            "VIEW_ID": 1,
+            "VIEW_NAME": "Top@1",
+            "H": 865,
+            "V": 135,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 507.0201443,
+                "Y": 701.3448844
+            },
+            "DRAW_ZONES": {
+                "L": 41,
+                "R": 34,
+                "T": 45,
+                "B": 45
+            },
+            "CTR_VIEW": "Top@1",
+            "REL_ORDER": "CTR",
+            "SCALE": 1,
+            "SHT_ID": 1
+        },
+        {
+            "VIEW_ID": 2,
+            "VIEW_NAME": "ORTHO@3",
+            "H": 73,
+            "V": 133.5,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 1014.307764,
+                "Y": 701.3448844
+            },
+            "DRAW_ZONES": {
+                "L": 7,
+                "R": 33,
+                "T": 30,
+                "B": 6.5
+            },
+            "CTR_VIEW": "Top@1",
+            "REL_ORDER": "R",
+            "SCALE": 1,
+            "SHT_ID": 1
+        },
+        {
+            "VIEW_ID": 3,
+            "VIEW_NAME": "ORTHO@2",
+            "H": 865,
+            "V": 75,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 507.0201443,
+                "Y": 501.5934665
+            },
+            "DRAW_ZONES": {
+                "L": 41,
+                "R": 34,
+                "T": 32.5,
+                "B": 67.5
+            },
+            "CTR_VIEW": "Top@1",
+            "REL_ORDER": "B",
+            "SCALE": 1,
+            "SHT_ID": 1
+        },
+         
+         
+		 {
+            "VIEW_ID": 4,
+            "VIEW_NAME": "Section view A-A",
+            "H": 73,
+            "V": 133,
+            "ANCHOR_TAG": "CTR",
+            "ANCHOR_POINT": {
+                "X": 712.97,
+                "Y": 268.8
+            },
+            "DRAW_ZONES": {
+                "L": 37,
+                "R": 20,
+                "T": 20,
+                "B": 12
+            },
+            "CTR_VIEW": "TOP@1",
+            "REL_ORDER": "",
+            "SCALE": 1,
+            "SHT_ID": 1
+        }
+    ]
+}
