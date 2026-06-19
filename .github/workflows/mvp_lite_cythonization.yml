@@ -9,8 +9,8 @@ jobs:
     runs-on: windows-latest
     
     env:
-      src_dir_path : "./mvp_lite_root"
-      package_name: "mvp_lite_root"
+      src_dir_path : ".mvp_mini/mvp_lite_root"
+      package_name: "mvp_lite2"
       cythonized_folder_name: "compiled_package"
 
     steps:
