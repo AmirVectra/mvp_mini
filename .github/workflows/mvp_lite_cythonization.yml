@@ -10,7 +10,7 @@ jobs:
     
     env:
       src_dir_path : "./mvp_lite_root"
-      package_name: "mvp_lite_root"
+      package_name: "mvp_lite_root2"
       cythonized_folder_name: "compiled_package"
 
     steps:
