@@ -20,7 +20,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9  # Adjust to the version your script requires
+        python-version: 3.12.3 # Adjust to the version your script requires
 
     - name: Install Cython
       run: pip install Cython
