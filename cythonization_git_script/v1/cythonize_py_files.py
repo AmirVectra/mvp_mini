@@ -34,28 +34,12 @@ def get_exclude_py_files_path(list_py_files_path, list_exclude_files_name):
             list_exclude_py_file_path.append(path)
     return list_exclude_py_file_path
 
-# def get_modified_pathOld(path_str, src_package_name, target_folder, prefix_output_path ):
-#     index = path_str.find(src_package_name)
-#     if index != -1:
-#         new_path = prefix_output_path + "/"+ os.path.join( target_folder, path_str[index + len(src_package_name)  : len(path_str)])
-#         return new_path
-
-def get_modified_path(path_str, src_package_name, target_folder, prefix_output_path):
+def get_modified_path(path_str, src_package_name, target_folder, prefix_output_path ):
     index = path_str.find(src_package_name)
-
-    if index == -1:
-        raise ValueError(
-            f"'{src_package_name}' not found in path: {path_str}"
-        )
-
-    return (
-        prefix_output_path
-        + "/"
-        + os.path.join(
-            target_folder,
-            path_str[index + len(src_package_name):]
-        )
-    )
+    if index != -1:
+        new_path = prefix_output_path + "/"+ os.path.join( target_folder, path_str[index + len(src_package_name)  : len(path_str)])
+        return new_path
+    
 
 def start_cythonization(list_py_files_dir, exclude_files_name):
     print("---------------------------------------Cythonization process start---------------------------------------------")
@@ -72,18 +56,7 @@ def move_pyd_files(list_pyd_files_path, src_package_name, target_package_name,pr
     print("-------------------------------------Moving files process began-------------------------------------------")
     for file in list_pyd_files_path:
         source_path = file
-        # path_to_move_file = get_modified_path(file, src_package_name, target_package_name,prefix_output_path)
-        print("SOURCE FILE:", file)
-
-        path_to_move_file = get_modified_path(
-            file,
-            src_package_name,
-            target_package_name,
-            prefix_output_path
-        )
-
-        print("TARGET FILE:", path_to_move_file)
-
+        path_to_move_file = get_modified_path(file, src_package_name, target_package_name,prefix_output_path)
         #os.makedirs(os.path.dirname(path_to_move_file), exist_ok=True)
         #shutil.copy2(source_path, path_to_move_file)
         # Copy the file
@@ -194,11 +167,6 @@ def main(src_dir_path, src_package_name, cythonized_package_name):
     
     # get list of paths of cythonized files.
     list_pyd_files_path = get_pyd_files_path(script_path_pyd_files, src_dir_path)
-
-    print("Pyd files found:")
-    for p in list_pyd_files_path:
-        print(repr(p))
-
     # move cythonized files from source package to a cythonized package.
     move_pyd_files(list_pyd_files_path, src_package_name, cythonize_package_name, prefix_output_path )
     
