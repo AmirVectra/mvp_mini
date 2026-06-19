@@ -1,6 +1,6 @@
 import argparse
 
-from src.mvp_lite.compute_pipeline import compute_Pipeline
+from mvp_lite.compute_pipeline import compute_Pipeline
 
 
 
