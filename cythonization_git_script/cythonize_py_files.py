@@ -57,15 +57,43 @@ def get_modified_path(path_str, src_package_name, target_folder, prefix_output_p
         )
     )
 
-def start_cythonization(list_py_files_dir, exclude_files_name):
-    print("---------------------------------------Cythonization process start---------------------------------------------")
-    # Iterate over each py files and cythonized them. 
-    for path in list_py_files_dir:
-        file_name = os.path.basename(path)
-        if not file_name in exclude_files_name:
-            command = ["cythonize", "-i", path]
-            completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
+# def start_cythonizationOld(list_py_files_dir, exclude_files_name):
+#     print("---------------------------------------Cythonization process start---------------------------------------------")
+#     # Iterate over each py files and cythonized them.
+#     for path in list_py_files_dir:
+#         file_name = os.path.basename(path)
+#         if not file_name in exclude_files_name:
+#             command = ["cythonize", "-i", path]
+#             completed_process = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, shell=True)
 
+def start_cythonization(list_py_files_dir, exclude_files_name):
+
+    print("---------------------------------------Cythonization process start---------------------------------------------")
+
+    for path in list_py_files_dir:
+
+        file_name = os.path.basename(path)
+
+        if not file_name in exclude_files_name:
+
+            command = ["cythonize", "-i", path]
+
+            completed_process = subprocess.run(
+                command,
+                text=True
+            )
+
+            print("=" * 80)
+            print("FILE:", path)
+            print("RETURN CODE:", completed_process.returncode)
+
+            if completed_process.stdout:
+                print("STDOUT:")
+                print(completed_process.stdout)
+
+            if completed_process.stderr:
+                print("STDERR:")
+                print(completed_process.stderr)
 
 def move_pyd_files(list_pyd_files_path, src_package_name, target_package_name,prefix_output_path ):
 
