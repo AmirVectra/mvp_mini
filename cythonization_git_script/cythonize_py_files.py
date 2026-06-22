@@ -175,7 +175,7 @@ def main(src_dir_path, src_package_name, cythonized_package_name, wheel_out_dir)
     file_extensions_to_delete = (".c",)      # .pyd is in build/, not src/
 
     prefix_output_path = "./" + cythonized_package_name
-    script_folder  = "./cythonization_git_script_v2"
+    script_folder  = "./cythonization_git_script"
     setup_py_path  = script_folder + "/_generated_setup.py"
 
     script_py  = script_folder + "/find_py_files.ps1"
