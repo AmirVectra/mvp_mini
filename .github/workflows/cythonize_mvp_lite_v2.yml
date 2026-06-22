@@ -1,4 +1,4 @@
-name: cythonize_mvp_lite_package
+name: cythonize_MVP_Lite_package
 
 on:
   workflow_dispatch:
@@ -38,7 +38,7 @@ jobs:
 
       - name: Cythonize package and build wheel
         run: |
-          python ./cythonization_git_script_v2/cythonize_py_files.py `
+          python ./cythonization_git_script/cythonize_py_files.py `
             "${{ env.src_dir_path }}" `
             "${{ env.package_name }}" `
             "${{ env.cythonized_folder_name }}" `
