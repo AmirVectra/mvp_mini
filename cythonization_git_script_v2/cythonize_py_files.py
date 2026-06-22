@@ -93,7 +93,7 @@ def generate_setup_py(list_py_files, exclude_files_name, src_dir_path, setup_out
         "    ext_modules=cythonize(",
         "        extensions,",
         '        compiler_directives={"language_level": "3"},',
-        "        nthreads=4,",
+        "        nthreads=0,",  # 0 = single-threaded; avoids BrokenProcessPool on Windows CI
         "    ),",
         ")",
         "",
@@ -166,11 +166,11 @@ def main(src_dir_path, src_package_name, cythonized_package_name, wheel_out_dir)
 
     # Output structure:  ./<cythonized_package_name>/<src_package_name>/...
     prefix_output_path = "./" + cythonized_package_name
-    setup_py_path = "./cythonization_git_script_v2/_generated_setup.py"
+    setup_py_path = "./cythonization_git_script/_generated_setup.py"
 
-    script_py   = "./cythonization_git_script_v2/find_py_files.ps1"
-    script_pyd  = "./cythonization_git_script_v2/get_pyd_file_paths.ps1"
-    script_non  = "./cythonization_git_script_v2/non_py_files.ps1"
+    script_py   = "./cythonization_git_script/find_py_files.ps1"
+    script_pyd  = "./cythonization_git_script/get_pyd_file_paths.ps1"
+    script_non  = "./cythonization_git_script/non_py_files.ps1"
 
     list_path_py_files     = get_py_files_path(script_py, src_dir_path)
     list_path_non_py_files = get_non_py_files_path(script_non, src_dir_path)
