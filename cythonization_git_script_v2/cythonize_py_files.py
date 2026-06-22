@@ -161,7 +161,7 @@ def delete_files_with_extensions(directory, extensions):
 
 def main(src_dir_path, src_package_name, cythonized_package_name, wheel_out_dir):
 
-    exclude_py_files_name = ["setup.py", "mvp_lite_main.py"]
+    exclude_py_files_name = ["main.py", "setup.py", "mvp_lite_main.py"]
     file_extensions_to_delete = (".c", ".pyd")
 
     # Output structure:  ./<cythonized_package_name>/<src_package_name>/...
