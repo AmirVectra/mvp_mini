@@ -11,7 +11,7 @@ run_mvp_lite= "mvp_lite.mvp_lite_main:main"
 
 [project]
 name = "mvp_lite"
-version =  "1.3.0"
+version =  "1.9.0"
 
 
 
