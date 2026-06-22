@@ -1,0 +1,60 @@
+name: cythonize_mvp_lite_package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_script:
+    runs-on: windows-latest
+
+    permissions:
+      contents: write
+
+    env:
+      src_dir_path:            "./mvp_lite_root/src/mvp_lite"
+      package_name:            "mvp_lite"
+      cythonized_folder_name:  "compiled_package"
+      wheel_out_dir:           "./dist"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install build dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install "cython>=3.0" setuptools wheel build
+
+      - name: Install package dependencies
+        # Install runtime deps so Cython can resolve imports during compilation.
+        # Adjust path if your requirements file lives elsewhere.
+        run: |
+          pip install -r mvp_lite_root/requirements.txt
+
+      - name: Cythonize package and build wheel
+        run: |
+          python ./cythonization_git_script/cythonize_py_files.py `
+            "${{ env.src_dir_path }}" `
+            "${{ env.package_name }}" `
+            "${{ env.cythonized_folder_name }}" `
+            "${{ env.wheel_out_dir }}"
+
+      - name: Upload wheel as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mvp_lite_wheel
+          path: ${{ env.wheel_out_dir }}/*.whl
+          if-no-files-found: error
+
+      - name: Commit and push cythonized package
+        run: |
+          git config --local user.email "github-actions@github.com"
+          git config --local user.name  "GitHub Actions"
+          git add "${{ env.cythonized_folder_name }}/" "${{ env.wheel_out_dir }}/"
+          git diff --staged --quiet || git commit -m "chore: cythonized MVP Lite package [skip ci]"
+          git push origin main
